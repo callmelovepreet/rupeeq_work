@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>RupeeQ PL landing – static preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="./rupeeq-pl.css">
+</helmet>
+<div id="rq-root"></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    window.dataLayer = window.dataLayer || [];
+    if (document.querySelector('script[data-rq-app]')) return;
+    const s = document.createElement('script');
+    s.type = 'module';
+    s.src = './rupeeq-pl.js';
+    s.setAttribute('data-rq-app', '');
+    document.body.appendChild(s);
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
