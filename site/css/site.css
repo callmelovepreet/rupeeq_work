@@ -35,6 +35,25 @@
   }
 }
 
+/* Hero feature pills: three equal tiles in one row on phones */
+@media (max-width: 639.98px) {
+  .rq-features {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+  .rq-features > li {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.25rem;
+    border-radius: 0.875rem;
+    font-size: 12px;
+    line-height: 1.25;
+    text-align: center;
+  }
+}
+
 /* Hero floating badges */
 .rq-float {
   opacity: 0;
