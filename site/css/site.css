@@ -21,6 +21,20 @@
   transform: none;
 }
 
+/* Sticky header once scrolled: frosted glass */
+.rq-glass {
+  background-color: rgb(255 255 255 / 0.92);
+  border-bottom: 1px solid rgb(255 255 255 / 0.6);
+  box-shadow: 0 4px 24px -10px rgb(11 34 84 / 0.18);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .rq-glass {
+    background-color: rgb(255 255 255 / 0.6);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+  }
+}
+
 /* Hero floating badges */
 .rq-float {
   opacity: 0;
@@ -98,6 +112,20 @@
 .rq-collapse.is-open {
   grid-template-rows: 1fr;
   opacity: 1;
+}
+
+/* Disclaimer (native <details> above the footer) */
+.rq-disclaimer > summary {
+  list-style: none;
+}
+.rq-disclaimer > summary::-webkit-details-marker {
+  display: none;
+}
+.rq-disclaimer[open] > summary svg {
+  transform: rotate(180deg);
+}
+.rq-disclaimer-body {
+  padding: 0 1.25rem 1.25rem;
 }
 
 /* Eligibility tab panel swap */

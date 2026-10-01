@@ -1098,9 +1098,7 @@
   function syncHeader() {
     var scrolled = window.scrollY > 24;
     header.classList.toggle("bg-transparent", !scrolled);
-    ["bg-white/95", "shadow-[0_4px_20px_-8px_rgb(11_34_84/0.15)]", "backdrop-blur"].forEach(function (c) {
-      header.classList.toggle(c, scrolled);
-    });
+    header.classList.toggle("rq-glass", scrolled);
     headerBar.classList.toggle("h-14", scrolled);
     headerBar.classList.toggle("h-16", !scrolled);
   }
