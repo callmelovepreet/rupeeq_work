@@ -367,19 +367,23 @@
     var attrs = Object.keys(o.attrs || {}).map(function (k) {
       return " " + k + '="' + esc(o.attrs[k]) + '"';
     }).join("");
+    // hideLabel: the placeholder names the field, so the label is kept for screen readers only.
+    var labelPad = o.hideLabel ? "" : "pt-4 ";
     return (
       '<div data-field="' + o.field + '">' +
       '<div data-field-box class="' + fieldBoxClass(err) + '">' +
       (o.prefix
-        ? '<span class="ml-4 flex items-center gap-2 pt-4 text-base font-semibold text-ink" aria-hidden="true">' + o.prefix + '<span class="h-5 w-px bg-line"></span></span>'
+        ? '<span class="ml-4 flex items-center gap-2 ' + labelPad + 'text-base font-semibold text-ink" aria-hidden="true">' + o.prefix + '<span class="h-5 w-px bg-line"></span></span>'
         : "") +
       '<input id="' + id + '" placeholder="' + esc(o.prefix ? o.placeholder || "" : " ") + '" aria-invalid="' + (err ? "true" : "false") + '"' +
       (describedBy ? ' aria-describedby="' + describedBy + '"' : "") +
-      ' class="peer h-full w-full rounded-2xl bg-transparent pt-4 text-base font-semibold text-ink outline-none ' +
+      ' class="peer h-full w-full rounded-2xl bg-transparent ' + labelPad + 'text-base font-semibold text-ink outline-none ' +
       (o.prefix ? "pl-2 pr-4 placeholder:text-ink-soft/70" : "px-4 placeholder:text-transparent") + '"' +
       attrs + ' value="' + esc(o.value) + '">' +
-      '<label for="' + id + '" class="pointer-events-none absolute left-4 top-2 text-xs font-medium text-ink-soft transition-all peer-focus:text-brand' +
-      (o.prefix ? "" : " peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs") +
+      (o.hideLabel
+        ? '<label for="' + id + '" class="sr-only'
+        : '<label for="' + id + '" class="pointer-events-none absolute left-4 top-2 text-xs font-medium text-ink-soft transition-all peer-focus:text-brand' +
+          (o.prefix ? "" : " peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs")) +
       '">' + o.label + "</label></div>" +
       (o.hint && !err ? '<p id="' + id + '-hint" class="mt-1.5 px-1 text-xs text-ink-soft">' + o.hint + "</p>" : "") +
       (err ? fieldErrorHtml(id + "-err", err) : "") +
@@ -509,7 +513,7 @@
         attrs: { autocomplete: "name", autocapitalize: "words", enterkeyhint: "next", inputmode: "text", maxlength: "60", name: "name" },
       }) +
       textField({
-        field: "mobile", label: "Mobile number", prefix: "+91", placeholder: "10-digit number", value: d.mobile,
+        field: "mobile", label: "Mobile number", prefix: "+91", placeholder: "Mobile Number", hideLabel: true, value: d.mobile,
         attrs: { type: "tel", inputmode: "numeric", autocomplete: "tel-national", enterkeyhint: "next", name: "mobile" },
       }) +
       consentField() +
