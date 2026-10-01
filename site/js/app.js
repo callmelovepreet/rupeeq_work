@@ -517,7 +517,7 @@
       formErrorHtml() +
       submitButton("Get OTP", "mt-4 w-full") +
       '<p class="mt-3 flex items-center justify-center gap-1.5 text-center text-xs text-ink-soft">' +
-      icon.lock("h-3.5 w-3.5 text-ok") + " Your data is encrypted. We never share it without consent.</p>" +
+      icon.lock("h-3.5 w-3.5 text-ok") + " Your data is safe with us.</p>" +
       "</form>"
     );
   }
